@@ -1,10 +1,54 @@
 // Example import
-// import example from './../src/js/main.js';
+import { counter, checkout }  from './../src/js/main.js';
+// import checkout from './../src/js/main.js';
 
 
+describe('counter', () => {
 
+  test('should return a string for a NaN scenario', () => {
+    const input = "hello";
+    expect(counter(input)).toEqual("Please Enter a Number");
+  });
 
+  test('should return an string for a scenario where the input is <= 0', () => {
+    const input = 0;
+    expect(counter(input)).toEqual("Please enter a number greater than 0");
+  });
+  
+  test('should return a string where the input is > 0', () => {
+    const input = 0.25;
+    expect(counter(input)).toEqual("Quarters: 1 Change: 0.00 ");
+  });
 
+  test('should return the number of quarters in a given amount plus remainder', () => {
+    const input = 0.35;
+    expect(counter(input)).toEqual("Quarters: 1 Dimes: 1 Change: 0.00 ");
+  });
+
+  test('should return the number of quarters and dimes in a given amount plus remainder', () => {
+    const input = 0.36;
+    expect(counter(input)).toEqual("Quarters: 1 Dimes: 1 Pennies: 1")
+  });
+
+  test('Should return the number of quarters, dimes and nickels in a given amount', () => {
+    const input = 0.40;
+    expect(counter(input)).toEqual("Quarters: 1 Dimes: 1 Nickels: 1 ")
+  });
+
+  test('Should return the number of quarters, dimes, nickels, and pennies in a given amount', () => {
+    const input = 0.42;
+    expect(counter(input)).toEqual("Quarters: 1 Dimes: 1 Nickels: 1 Pennies: 2")
+  });
+});
+
+describe('checkout', () => {
+
+  test('Should return a string with given name and amount in the form of change', () => {
+    const ourName = "Kake";
+    const checkoutKake = checkout(ourName);
+    expect(checkoutKake(4.99)).toEqual("Kake, your change is - Quarters: 19 Dimes: 2 Pennies: 4")
+  })
+})
 
 
 
